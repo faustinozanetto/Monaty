@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Camera/CameraComponent.h"
+#include "Components/PlaceablesComponent.h"
 #include "Components/TimelineComponent.h"
 #include "Engine/DataTable.h"
 #include "GameFramework/Character.h"
@@ -230,6 +231,9 @@ public:
 
 	UPROPERTY(BlueprintReadOnly, EditDefaultsOnly, Category = "Components")
 	UCameraComponent* CameraComponent;
+
+	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category="Components")
+	UPlaceablesComponent* PlaceablesComponent;
 
 	/* Properties */
 	UPROPERTY(BlueprintReadOnly, EditDefaultsOnly, Category = "Parameters|Essential|Curves")
