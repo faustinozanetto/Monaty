@@ -19,8 +19,16 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
+	void InitializeCollisionResponses() const;
+
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+	/* Components */
+	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category="Components")
+	USceneComponent* PlaceableRootComponent;
+
+	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category="Components")
+	UStaticMeshComponent* PlaceableMeshComponent;
 };

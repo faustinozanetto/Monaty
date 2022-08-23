@@ -203,6 +203,8 @@ protected:
 	void StancePressedAction();
 	void StanceReleasedAction();
 
+	void PlaceModeAction();
+
 	/** State changes */
 	void OnMovementModeChanged(EMovementMode PrevMovementMode, uint8 PreviousCustomMode = 0);
 	void OnMovementStateChanged(EPlayerMovementState PreviousState);

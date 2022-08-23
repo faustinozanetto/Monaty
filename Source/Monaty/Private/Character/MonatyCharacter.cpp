@@ -21,6 +21,9 @@ AMonatyCharacter::AMonatyCharacter(const FObjectInitializer& ObjectInitializer) 
 
 	CameraComponent = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
 	CameraComponent->SetupAttachment(SpringArmComponent, TEXT("SpringEndPoint"));
+
+	PlaceablesComponent = CreateDefaultSubobject<UPlaceablesComponent>(TEXT("Placeables"));
+	AddOwnedComponent(PlaceablesComponent);
 }
 
 // Called when the game starts or when spawned
@@ -88,6 +91,9 @@ void AMonatyCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCom
 	// Stance AKA crouching
 	PlayerInputComponent->BindAction("StanceAction", IE_Pressed, this, &AMonatyCharacter::StancePressedAction);
 	PlayerInputComponent->BindAction("StanceAction", IE_Released, this, &AMonatyCharacter::StanceReleasedAction);
+
+	// Placeables
+	PlayerInputComponent->BindAction("PlaceableAction", IE_Pressed, this, &AMonatyCharacter::PlaceModeAction);
 }
 
 void AMonatyCharacter::PostInitializeComponents()
@@ -441,6 +447,15 @@ void AMonatyCharacter::StanceReleasedAction()
 	{
 		SetStance(EPlayerStanceState::Standing);
 		StanceTimeline.Reverse();
+	}
+}
+
+void AMonatyCharacter::PlaceModeAction()
+{
+	if (PlaceablesComponent)
+	{
+		// We toggle the place mode.
+		PlaceablesComponent->bIsPlacing = !PlaceablesComponent->bIsPlacing;
 	}
 }
 
